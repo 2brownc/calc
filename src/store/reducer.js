@@ -158,7 +158,7 @@ function reducer(state, action) {
         ...state,
         // if operandA is "0."
         // then just store it as "0"
-        operandA : parseFloat(state.operandB) === 0 ? "0" : `${state.operandB} ${action.payload.symbol}`,
+        operandA : parseFloat(state.operandB) === 0 ? `0 ${action.payload.symbol}` : `${state.operandB} ${action.payload.symbol}`,
         operandB : "",
         operator : action.payload.operation,
         isDecimalNumber: false
