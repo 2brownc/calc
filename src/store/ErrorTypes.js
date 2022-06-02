@@ -1,0 +1,7 @@
+const ErrorTypes = {
+  "EXCEED_MAX_SAFE_INTEGER": "EXCEED_MAX_SAFE_INTEGER",
+  "EXCEED_MIN_SAFE_INTEGER": "EXCEED_MIN_SAFE_INTEGER",
+  "NUM_TOO_LONG" : "NUM_TOO_LONG"
+}
+
+export default ErrorTypes;

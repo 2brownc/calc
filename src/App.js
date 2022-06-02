@@ -6,6 +6,7 @@ import "./App.css";
 import Display from './components/Display';
 import Keyboard from './components/Keyboard';
 import { reducer, init } from './store/reducer.js';
+import InvalidInputWarning from './components/ErrorMessage';
 
 const setGrouping = (
   operand,
@@ -17,7 +18,6 @@ const setGrouping = (
  const locale = Intl.NumberFormat().resolvedOptions().locale;
   let number = operand;
   let symbol = "";
-  console.log("op, type", operand, typeof operand);
   if (typeof operand === "string" && operand.indexOf(" ") !== -1) {
     [number, symbol] = operand.split(" ");
   }
@@ -38,7 +38,7 @@ const setGrouping = (
 function App() {
   const [state, dispatch] = useReducer(
     reducer,
-    ["", "", null, false, false],
+    ["", "", null, false, false, null],
     init
   );
 
@@ -54,6 +54,7 @@ function App() {
   });
 
   return (
+    <>
     <Container maxWidth="xs">
       <Box
         sx={{
@@ -75,6 +76,10 @@ function App() {
         </Paper>
       </Box>
     </Container>
+    <Container>
+      <InvalidInputWarning errorMessage={state.error} />
+    </Container>
+    </>
   );
 }
 

@@ -1,18 +1,21 @@
 import operators from './Operators';
 import actions from './ActionTypes';
+import errorTypes from './ErrorTypes';
 
 function init([operandA,
   operandB,
   operator,
   isDecimalNumber,
-  isResetOnInput
+  isResetOnInput,
+  errorType
 ]) {
   return ({
     operandA: operandA,
     operandB: operandB,
     operator: operator,
     isDecimalNumber: isDecimalNumber,
-    isResetOnInput: isResetOnInput
+    isResetOnInput: isResetOnInput,
+    error: errorType
   });
 }
 
@@ -56,8 +59,14 @@ function reducer(state, action) {
       "",
       null,
       false,
-      false
+      false,
+      null
     ]);
+  }
+
+  //reset error message after input
+  if (state.error !== null) {
+    state.error = null;
   }
   switch (action.type) {
     case actions.ADD_DIGIT:
@@ -75,10 +84,28 @@ function reducer(state, action) {
       } else {
         addDigitVal = `${state.operandB}${action.payload}`;
       }
-      return ({
-        ...state,
-        operandB : addDigitVal 
-      });
+
+      if (parseFloat(addDigitVal) > Number.MAX_SAFE_INTEGER) {
+        return ({
+          ...state,
+          error : errorTypes.EXCEED_MAX_SAFE_INTEGER
+        });
+      } else if (parseFloat(addDigitVal) < Number.MIN_SAFE_INTEGER) {
+        return ({
+          ...state,
+          error : errorTypes.EXCEED_MIN_SAFE_INTEGER
+        });
+      } else if (addDigitVal.length > 16){
+        return({
+          ...state,
+          error: errorTypes.NUM_TOO_LONG
+        })
+      } else {
+        return ({
+          ...state,
+          operandB: addDigitVal
+        })
+      }
     case actions.ADD_DECIMAL:
       let addDecimal = false;
       let addZero = false;
@@ -143,7 +170,7 @@ function reducer(state, action) {
         operandB : ""
       });
     case actions.AC:
-      return init(["", "", null, false, false]);
+      return init(["", "", null, false, false, null]);
     case actions.EVALUATE:
       const result = evaluate(state);
 
@@ -153,7 +180,8 @@ function reducer(state, action) {
           "Division by Zero Error!",
           null,
           false,
-          true
+          true,
+          null
         ]);
       } else if (!Number.isFinite(result)) {
         return init([
@@ -161,7 +189,8 @@ function reducer(state, action) {
           result,
           null,
           false,
-          true
+          true,
+          null
         ]);
       }
 
@@ -169,9 +198,8 @@ function reducer(state, action) {
       if (result === null) {
         return state;
       } else {
-        console.log("result", result);
        const isDecimalInResult = result.toString(10).indexOf('.') !== -1
-       return init(["", result.toString(10), null, isDecimalInResult, false]);
+       return init(["", result.toString(10), null, isDecimalInResult, false, null]);
       }
   }
 }
