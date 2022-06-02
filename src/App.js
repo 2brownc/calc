@@ -12,7 +12,11 @@ const setGrouping = (
   operand,
   isDecimalNumber
 ) => {
-  if (operand === "" || operand === null || operand === "-") {
+  if (operand === "" ||
+    operand === null ||
+    operand === "-" ||
+    operand === "Division by Zero Error!"
+  ) {
     return operand;
   }
  const locale = Intl.NumberFormat().resolvedOptions().locale;

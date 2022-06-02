@@ -175,6 +175,7 @@ function reducer(state, action) {
       const result = evaluate(state);
 
       if (Number.isNaN(result)) {
+        console.log("result", result)
         return init([
           "",
           "Division by Zero Error!",
