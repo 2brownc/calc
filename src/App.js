@@ -3,11 +3,10 @@ import { Container, Grid } from '@mui/material';
 
 import "./App.css";
 import Display from './components/Display';
-import Keyboard from './components/Keyboard';
+import Keypad from './components/Keypad';
 import { reducer, init } from './store/reducer.js';
 import InvalidInputWarning from './components/ErrorMessage';
-import onKeyInput from "./components/KeyHandler";
-
+import KeyboardInputHandler from './components/KeyboardHandler';
 
 const setGrouping = (
   operand,
@@ -59,7 +58,7 @@ function App() {
   });
 
   return (
-    <div className="app" tabIndex="1" onKeyPress={e => onKeyInput(e)}>
+    <div className="app" tabIndex="1" onKeyPress={e => KeyboardInputHandler([dispatch, e])}>
     <Container
       maxWidth={false}
       sx={{maxWidth:"330px"}}
@@ -78,7 +77,7 @@ function App() {
           </div>
       </Grid>
       <Grid item xs={12}>
-            <Keyboard spacing="1" dispatch={dispatch} />
+            <Keypad spacing="1" dispatch={dispatch} />
       </Grid>
 
       <Grid item xs={8}>
