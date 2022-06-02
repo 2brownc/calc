@@ -1,15 +1,14 @@
 import Line from './Line';
 
 const Display = ({
-  bgcolor,
-  padding,
   lines
 }) => {
+  let count = 0;
   return (
   <div>
     {lines.map(line => {
       return(
-        <Line>
+        <Line key={count++}>
           {line}
         </Line>
       );

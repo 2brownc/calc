@@ -1,12 +1,13 @@
 import { useReducer, useState, useEffect } from 'react';
-import { Box, Container, Paper } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 
-import logo from "./logo.svg";
 import "./App.css";
 import Display from './components/Display';
 import Keyboard from './components/Keyboard';
 import { reducer, init } from './store/reducer.js';
 import InvalidInputWarning from './components/ErrorMessage';
+import onKeyInput from "./components/KeyHandler";
+
 
 const setGrouping = (
   operand,
@@ -25,7 +26,7 @@ const setGrouping = (
   if (typeof operand === "string" && operand.indexOf(" ") !== -1) {
     [number, symbol] = operand.split(" ");
   }
- if(isDecimalNumber) {
+ if(number.indexOf(".") !== -1) {
     let [integerPart, decimalPart] = number.split(".");
 
    if (decimalPart === undefined) {
@@ -58,32 +59,34 @@ function App() {
   });
 
   return (
-    <>
-    <Container maxWidth="xs">
-      <Box
-        sx={{
-          maxWidth: '300px'
-        }}
-      >
-        <Paper>
+    <div className="app" tabIndex="1" onKeyPress={e => onKeyInput(e)}>
+    <Container
+      maxWidth={false}
+      sx={{maxWidth:"330px"}}
+    >
+   <Grid
+      container
+      direction="row"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Grid item xs={12}>
           <div className="display">
             <Display
               lines={[line1, line2]}
             />
           </div>
-        </Paper>
-        <Paper>
-
-          <div className="App">
+      </Grid>
+      <Grid item xs={12}>
             <Keyboard spacing="1" dispatch={dispatch} />
-          </div>
-        </Paper>
-      </Box>
+      </Grid>
+
+      <Grid item xs={8}>
+          <InvalidInputWarning errorMessage={state.error} />
+      </Grid>
+    </Grid>
     </Container>
-    <Container>
-      <InvalidInputWarning errorMessage={state.error} />
-    </Container>
-    </>
+    </div>
   );
 }
 
