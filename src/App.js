@@ -23,7 +23,7 @@ const setGrouping = (operand, isDecimalNumber) => {
   if (typeof operand === "string" && operand.indexOf(" ") !== -1) {
     [number, symbol] = operand.split(" ");
   }
-  if (number.indexOf(".") !== -1) {
+  if (number.toString().indexOf(".") !== -1) {
     let [integerPart, decimalPart] = number.split(".");
 
     if (decimalPart === undefined) {
