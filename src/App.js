@@ -13,7 +13,7 @@ const setGrouping = (operand, isDecimalNumber) => {
     operand === "" ||
     operand === null ||
     operand === "-" ||
-    operand === "Division by Zero Error!"
+    operand === "Undefined"
   ) {
     return operand;
   }

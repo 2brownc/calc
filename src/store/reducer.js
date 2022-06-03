@@ -173,8 +173,7 @@ function reducer(state, action) {
       const result = evaluate(state);
 
       if (Number.isNaN(result)) {
-        console.log("result", result);
-        return init(["", "Division by Zero Error!", null, false, true, null]);
+        return init(["", "Undefined", null, false, true, null]);
       } else if (!Number.isFinite(result)) {
         return init(["", result, null, false, true, null]);
       }
