@@ -1,14 +1,11 @@
-import Grid from '@mui/material/Grid';
+import Grid from "@mui/material/Grid";
 
-import Btn from './Button';
-import actions from '../store/ActionTypes.js';
-import operators from '../store/Operators';
-import KeypadInputHandler from './KeypadHandler';
+import Btn from "./Button";
+import actions from "../store/ActionTypes.js";
+import operators from "../store/Operators";
+import KeypadInputHandler from "./KeypadHandler";
 
-const Keypad = ({
-  spacing,
-  dispatch
-}) => {
+const Keypad = ({ spacing, dispatch }) => {
   return (
     <Grid container spacing={spacing}>
       <Grid item xs={6}>
@@ -21,10 +18,7 @@ const Keypad = ({
         </Btn>
       </Grid>
       <Grid item xs={3}>
-        <Btn
-          onClick={KeypadInputHandler}
-          args={[dispatch, actions.DELETE]}
-        >
+        <Btn onClick={KeypadInputHandler} args={[dispatch, actions.DELETE]}>
           DEL
         </Btn>
       </Grid>
@@ -66,13 +60,13 @@ const Keypad = ({
           onClick={KeypadInputHandler}
           args={[dispatch, operators.TIMES, "×"]}
         >
-        ×
+          ×
         </Btn>
       </Grid>
 
       <Grid item xs={3}>
         <Btn
-       onClick={KeypadInputHandler}
+          onClick={KeypadInputHandler}
           args={[dispatch, actions.ADD_DIGIT, "4"]}
         >
           4
@@ -154,14 +148,11 @@ const Keypad = ({
         </Btn>
       </Grid>
       <Grid item xs={6}>
-        <Btn
-          onClick={KeypadInputHandler}
-          args={[dispatch, actions.EVALUATE]}
-        >
+        <Btn onClick={KeypadInputHandler} args={[dispatch, actions.EVALUATE]}>
           =
         </Btn>
       </Grid>
-    </Grid >
+    </Grid>
   );
 };
 

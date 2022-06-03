@@ -1,14 +1,8 @@
-import react from 'react';
-import TextField from '@mui/material/TextField';
+import react from "react";
+import TextField from "@mui/material/TextField";
 
-const Line = ({
-  children
-}) => {
-  return (
-    <div>
-      {children}
-    </div>
-  );
+const Line = ({ children }) => {
+  return <div>{children}</div>;
 };
 
 export default Line;
