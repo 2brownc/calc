@@ -7,6 +7,7 @@ import Keypad from "./components/Keypad";
 import { reducer, init } from "./store/reducer.js";
 import InvalidInputWarning from "./components/ErrorMessage";
 import KeyboardInputHandler from "./components/KeyboardHandler";
+import Header from "./components/Header";
 
 const setGrouping = (operand, isDecimalNumber) => {
   if (
@@ -39,6 +40,9 @@ const setGrouping = (operand, isDecimalNumber) => {
   }
 };
 
+const APP_NAME = "Calculator";
+const APP_GIT_LINK = "https://github.com/2brownc/calc";
+
 function App() {
   const [state, dispatch] = useReducer(
     reducer,
@@ -63,6 +67,8 @@ function App() {
       tabIndex="1"
       onKeyPress={(e) => KeyboardInputHandler([dispatch, e])}
     >
+      <Header heading={APP_NAME} gitLink={APP_GIT_LINK} />
+      <div className="appMain">
       <Container maxWidth={false} sx={{ maxWidth: "330px" }}>
         <Grid
           container
@@ -84,6 +90,7 @@ function App() {
           </Grid>
         </Grid>
       </Container>
+      </div>
     </div>
   );
 }

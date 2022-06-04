@@ -3,6 +3,10 @@
   height: 100vh;
 }
 
+.appMain {
+  padding-top: 20px;
+}
+
 .display {
   padding: 5px;
   background-color: #e7feff;
