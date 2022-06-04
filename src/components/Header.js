@@ -18,7 +18,10 @@ const GithubLink = ({ link }) => {
 
 const Header = ({ heading, gitLink }) => {
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      enableColorOnDark
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <CalculateIcon
