@@ -9,9 +9,7 @@
 
 .display {
   padding: 5px;
-  background-color: #e7feff;
-  background-color: #e6e6fa;
-  background-color: #e0ffff;
+  background-color: #FEF7FF;
   border: ridge;
 }
 
@@ -31,3 +29,4 @@
 .warningBox {
   padding-top: 10px;
 }
+
