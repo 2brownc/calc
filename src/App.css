@@ -27,3 +27,7 @@
 .display div :nth-child(2) {
   font-size: larger;
 }
+
+.warningBox{
+  padding-top: 10px;
+}

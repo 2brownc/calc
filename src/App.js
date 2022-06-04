@@ -69,27 +69,28 @@ function App() {
     >
       <Header heading={APP_NAME} gitLink={APP_GIT_LINK} />
       <div className="appMain">
-      <Container maxWidth={false} sx={{ maxWidth: "330px" }}>
-        <Grid
-          container
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Grid item xs={12}>
-            <div className="display">
-              <Display lines={[line1, line2]} />
-            </div>
+        <Container maxWidth={false} sx={{ maxWidth: "330px" }}>
+          <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Grid item xs={12}>
+              <div className="display">
+                <Display lines={[line1, line2]} />
+              </div>
+            </Grid>
+            <Grid item xs={12}>
+              <Keypad spacing="1" dispatch={dispatch} />
+            </Grid>
+            <Grid item xs={10}>
+              <div class="warningBox">
+                <InvalidInputWarning errorMessage={state.error} />
+              </div>
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <Keypad spacing="1" dispatch={dispatch} />
-          </Grid>
-
-          <Grid item xs={8}>
-            <InvalidInputWarning errorMessage={state.error} />
-          </Grid>
-        </Grid>
-      </Container>
+        </Container>
       </div>
     </div>
   );
